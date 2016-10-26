@@ -80,7 +80,7 @@ public String addProduct(@ModelAttribute("product")Product product, HttpServletR
 		
 		
 		
-		return "AdminProduct";
+		return "admin/AdminProduct";
 }
 	
 @RequestMapping("removeproduct/{id}")
@@ -103,7 +103,7 @@ public String editProduct(@PathVariable("id") String id, Model model) {
 	model.addAttribute("supplierList",this.supplierDAO.list());
 	
 
-	return "AdminProduct";
+	return "admin/AdminProduct";
 }
 
 @RequestMapping("product/get/{id}")

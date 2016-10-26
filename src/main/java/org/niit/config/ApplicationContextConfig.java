@@ -5,9 +5,12 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
-import org.niit.model.Cart;
+
+
+
 import org.niit.model.Category;
 import org.niit.model.Product;
+
 import org.niit.model.Supplier;
 import org.niit.model.Userdetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +57,14 @@ public class ApplicationContextConfig {
 	    sessionBuilder.addAnnotatedClasses(Category.class);
 	 sessionBuilder.addAnnotatedClasses(Userdetails.class);
 	 sessionBuilder.addAnnotatedClasses(Product.class);
-	 sessionBuilder.addAnnotatedClasses(Cart.class);
+	 /*sessionBuilder.addAnnotatedClasses(Cart.class);
+	 sessionBuilder.addAnnotatedClasses(BillingAddress.class);
+	 sessionBuilder.addAnnotatedClasses(CardDetail.class);
+	 sessionBuilder.addAnnotatedClasses(CartItem.class);
+	 sessionBuilder.addAnnotatedClasses(CheckoutDetails.class);
+	 sessionBuilder.addAnnotatedClasses(OrderDetail.class);
+	 sessionBuilder.addAnnotatedClasses(OrderedItems.class);
+	 sessionBuilder.addAnnotatedClasses(ShippingAddress.class);*/
 	    return sessionBuilder.buildSessionFactory();
 	}
 	@Autowired

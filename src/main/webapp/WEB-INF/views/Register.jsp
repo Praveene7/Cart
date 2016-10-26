@@ -44,7 +44,7 @@ body {
 }
 
 footer {
-	position: absolute;
+	
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -80,11 +80,10 @@ function validateForm() {
 					<div class="panel-body">
 
 						<form:form action="RegisterSuccess" commandName="Userdetails" onsubmit="return validateForm();" method="post">
-							<div style="display: none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-							<p style="color: red">${msg}</p>
+							<p style="color: red">${msg}</p>							
 								<div class="col-md-8">
 								<div class="form-group">
-									<input type="text" name="fullname" id="fullname" class="form-control input-sm" required="true"
+									<input type="text" name="fullname" id="fullname" class="form-control input-sm" required="true" pattern="[a-zA-Z ]+" title="Name should be alphabets"
 										placeholder="Full Name">
 								</div>
 							</div>
@@ -105,7 +104,7 @@ function validateForm() {
 							<div class="col-md-8">
 								<div class="form-group">
 									<input type="password" name="password" id="password"
-										class="form-control input-sm" required="true"
+										class="form-control input-sm" required="true" maxlength="10"
 										placeholder="Password">
 								</div>
 							</div>

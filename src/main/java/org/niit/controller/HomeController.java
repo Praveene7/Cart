@@ -40,6 +40,7 @@ public class HomeController {
 		model.addAttribute("product", new Product());
 		model.addAttribute("productList",this.productDAO.list());
 	ModelAndView mv = new ModelAndView("home");
+	mv.addObject("isUserClickedRegisterHere", "true");
 
 	return mv;
 	}
@@ -61,12 +62,13 @@ public ModelAndView loginHere()
 	return mv;
 }
 	
-@RequestMapping("/Admin")
-public ModelAndView Admin()
+@RequestMapping("/Product")
+public ModelAndView product(HttpSession session,Model model)
 {
-	ModelAndView mv = new ModelAndView("AdminLogin");
-	mv.addObject("userDetails", userdetails);
-	mv.addObject("isUserClickedLoginHere", "true");
+	ModelAndView mv = new ModelAndView("ProductView");
+	model.addAttribute("product", new Product());
+	model.addAttribute("productList",this.productDAO.list());
+	
 	return mv;
 }
 	
@@ -76,26 +78,35 @@ public ModelAndView registerUser(@ModelAttribute Userdetails userdetails)
 	ModelAndView mv;
 	mv= new ModelAndView("Login");
 	String msg;
-	int j,k;
+	int j=0;
 	
 	 List<Userdetails> usersDetailList=userdetailsDAO.list();
 
 	    for (int i=0; i< usersDetailList.size(); i++) {
 	        if(userdetails.getEmail().equals(usersDetailList.get(i).getEmail())) {
+	        	mv= new ModelAndView("Register");
 	        	mv.addObject("msg","Email already exists");
-	            mv= new ModelAndView("Register");
 	            j=1;
-	        }
+	            
+	        }	       
 
 	        if(userdetails.getUsername().equals(usersDetailList.get(i).getUsername())) {
-	            mv.addObject("msg","Username already exists");
 	            mv= new ModelAndView("Register");
-	            k=2;
-	            }	        
-	    } 
+	            mv.addObject("msg","Username already exists");
+	            j=1;
+	            }
+	        if(userdetails.getContact().equals(usersDetailList.get(i).getContact())) {
+	            mv= new ModelAndView("Register");
+	            mv.addObject("msg","Contact number already exists");
+	            j=1;
+	            }
+	    }
+	    if(j==0){
+	    	mv.addObject("msg","You have registered successfully, please log in to continue");
+		    userdetailsDAO.save(userdetails);	    	
+	    }
 
-		mv.addObject("msg","You have registered successfully, please log in to continue");
-	    userdetailsDAO.save(userdetails);
+		
 	    return mv;
 	    
 	/*if(userdetailsDAO.get(userdetails.getUserid())==null)
@@ -110,6 +121,7 @@ public ModelAndView registerUser(@ModelAttribute Userdetails userdetails)
 	
 	mv.addObject("isUserClickedSubmit", "true");
 	return mv;*/
+	    
 }
 
 }

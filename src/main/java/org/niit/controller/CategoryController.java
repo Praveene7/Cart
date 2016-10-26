@@ -26,7 +26,7 @@ public class CategoryController {
 		
 		model.addAttribute("category", category);
 		model.addAttribute("categoryList", this.categoryDAO.list());
-		return "AdminCategory";		
+		return "admin/AdminCategory";		
 	}
 	
 	@RequestMapping(value="/addcategory" , method=RequestMethod.POST)
@@ -36,7 +36,7 @@ public class CategoryController {
 	category.setId(newID);
 		categoryDAO.saveOrUpdate(category);
 		model.addAttribute("categoryList", this.categoryDAO.list());
-		return "AdminCategory";
+		return "admin/AdminCategory";
 	}
 	
 	@RequestMapping("removecategory/{id}") 
@@ -67,7 +67,7 @@ public class CategoryController {
 		model.addAttribute("category",this.categoryDAO.get(id));
 		model.addAttribute("categoryList", this.categoryDAO.list());
 		
-		return "AdminCategory";
+		return "admin/AdminCategory";
 		
 	}
 }

@@ -16,6 +16,7 @@ import org.niit.model.Userdetails;
 
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 	@Autowired
 	private Product product;
@@ -71,7 +72,7 @@ public class AdminController {
 	@RequestMapping("/manageProducts")
 	public ModelAndView products()
 	{
-		ModelAndView mv = new ModelAndView("/AdminProduct");
+		ModelAndView mv = new ModelAndView("AdminProduct");
 		mv.addObject("supplier", new Supplier());
 		mv.addObject("category",new Category());
 		mv.addObject("categoryList",this.categoryDAO.list());

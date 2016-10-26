@@ -43,7 +43,10 @@ public class UserController {
 		 System.out.println(authority.getAuthority());
 		     if (authority.getAuthority().equals(role)) 
 		     {
-		    	 
+		    	 /*userdetails=userdetailsDAO.get(userid);
+		    	 session.setAttribute("loggedInUser", userdetails.getUsername());
+		    	 session.setAttribute("loggedInUserID", userdetails.getUserid());*/
+		    	
 		    	 session.setAttribute("UserLoggedIn", "true");
 		    	 session.setAttribute("Username", userid);
 		    	 page="home";
@@ -109,6 +112,7 @@ public ModelAndView logout(HttpServletRequest request,HttpSession session)
 	ModelAndView mv= new ModelAndView("home");
 	session.invalidate();
 	session=request.getSession(true);
+	mv.addObject("isUserClickedRegisterHere", "true");
 	mv.addObject("logoutMessage","You successfully logged out");
 	mv.addObject("loggedOut", "true");
 	return mv;
