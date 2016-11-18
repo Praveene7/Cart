@@ -16,8 +16,8 @@ public interface ProductDAO {
 	public void saveOrUpdate(Product product);
 
 	public void delete(String id);
-
-	public MultipartFile getImage();
+	
+	Product getProductById(String id);
 
 
 }

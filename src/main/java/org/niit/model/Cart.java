@@ -1,74 +1,65 @@
 package org.niit.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
+
 
 @Entity
-@Table(name = "Cart")
-@Component
-public class Cart {
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private int cartid;
-	
-	@Transient
-	private int total;
-	
-	private String productName;
-	private int price;
-	private int quantity;
-	private char status;
-	private String userid;
-	
-	
-	
-	
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-	public int getCartid() {
-		return cartid;
-	}
-	public void setCartid(int cartid) {
-		this.cartid = cartid;
-	}
-	public int getTotal() {
-		return total;
-	}
-	public void setTotal(int total) {
-		this.total = total;
-	}
-	public String getProductName() {
-		return productName;
-	}
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public char getStatus() {
-		return status;
-	}
-	public void setStatus(char status) {
-		this.status = status;
+public class Cart implements Serializable {
+
+    private static final long serialVersionUID = 13L;
+
+    @Id
+    @GeneratedValue
+    private int cartId;
+
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<CartItem> cartItems;
+
+    @OneToOne
+    @JoinColumn(name = "userid")
+    @JsonIgnore
+    private Userdetails userdetails;
+
+   
+
+	public Userdetails getUserdetails() {
+		return userdetails;
 	}
 
+	public void setUserdetails(Userdetails userdetails) {
+		this.userdetails = userdetails;
+	}
+
+	private double grandTotal;
+
+    public int getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public double getGrandTotal() {
+        return grandTotal;
+    }
+
+    public void setGrandTotal(double grandTotal) {
+        this.grandTotal = grandTotal;
+    }
+    
+   
 }

@@ -43,31 +43,6 @@ background-color: #E0064B;
 </head>
 
 <body>
-
-	<div class="jumbotron">
-  <div class="container text-center">
-    <h1>Big</h1>
-    <p></p>
-  </div>
-</div>
-	<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="viewCustomers">View Customers</a></li>
-			<li><a href="#">View Products</a></li>
-			<li><a href="logout"><span
-					class="glyphicon glyphicon-log-0ut"></span> Log Out</a></li>
-		</ul>
-	</div>
-	</nav>
-	<div class="row">
-		<nav class="col-sm-3">
-		<ul class="nav nav-pills nav-stacked" data-offset-top="205">
-			<li class="active"><a href="admin/manageProducts">PRODUCT</a></li>
-			<li><a href="admin/manageSuppliers">SUPPLIER</a></li>
-			<li><a href="admin/manageCategories">CATEGORY</a></li>
-		</ul>
-		</nav>
 		<div class="col-sm-9">
 			<div class="container-fluid"
 				style="background-color: gray; color: purple; height: 80px;">
@@ -96,10 +71,6 @@ background-color: #E0064B;
 
 						</form:label>
 						<div class="col-sm-10">
-							<%
-								Random r = new Random();
-									int id = r.nextInt(999);
-							%>
 							<c:choose>
 
 								<c:when test="${!empty product.id}">
@@ -119,7 +90,7 @@ background-color: #E0064B;
 
 
 
-							<form:input path="id" hidden="true" value="<%=id%>" />
+							<form:input path="id" hidden="true" />
 						</div>
 					</div>
 					<br>

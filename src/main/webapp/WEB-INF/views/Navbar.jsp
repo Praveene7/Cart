@@ -17,7 +17,7 @@
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
         <ul class="dropdown-menu">
 		  <li><a href="#">Electronics</a></li>
-          <li><a href="/ShopCart/src/main/webapp/WEB-INF/views/ProductView.jsp">Men</a></li>
+          <li><a href="Product">Men</a></li>
           <li><a href="#">Women</a></li>
 		  
 		<c:if test="${!empty categoryList }">

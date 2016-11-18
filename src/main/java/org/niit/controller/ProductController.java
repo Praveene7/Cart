@@ -37,7 +37,7 @@ public class ProductController {
 	@Autowired(required=true)
 	private SupplierDAO supplierDAO;
 	
-	private String path="E:\\images\\";
+	private String path="D:\\Project\\BabysCart\\src\\main\\webapp\\resources\\img\\";
 	
 	@RequestMapping(value="/products",method=RequestMethod.GET)
 	public String listProducts(Model model)
@@ -48,7 +48,8 @@ public class ProductController {
 		model.addAttribute("productList",this.productDAO.list());
 		model.addAttribute("categoryList",this.categoryDAO.list());
 		model.addAttribute("supplierList",this.supplierDAO.list());
-		return "product";
+		model.addAttribute("clickedProduct","true");
+		return "AdminHome";
 	}
 	
 	@RequestMapping(value="/addproduct", method=RequestMethod.POST)
@@ -80,7 +81,7 @@ public String addProduct(@ModelAttribute("product")Product product, HttpServletR
 		
 		
 		
-		return "admin/AdminProduct";
+		return "redirect:/products";
 }
 	
 @RequestMapping("removeproduct/{id}")
@@ -103,7 +104,7 @@ public String editProduct(@PathVariable("id") String id, Model model) {
 	model.addAttribute("supplierList",this.supplierDAO.list());
 	
 
-	return "admin/AdminProduct";
+	return "AdminProduct";
 }
 
 @RequestMapping("product/get/{id}")

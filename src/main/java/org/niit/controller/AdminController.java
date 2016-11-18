@@ -52,7 +52,7 @@ public class AdminController {
 	@RequestMapping("/manageCategories")
 	public ModelAndView categories()
 	{
-		ModelAndView mv = new ModelAndView("AdminCategory");
+		ModelAndView mv = new ModelAndView("AdminHome");
 		mv.addObject("category", category);
 		mv.addObject("isAdminClickedCategories","true");
 		mv.addObject("categoryList", categoryDAO.list());

@@ -71,6 +71,16 @@ public ModelAndView product(HttpSession session,Model model)
 	
 	return mv;
 }
+
+@RequestMapping("/Cart")
+public ModelAndView cart(HttpSession session,Model model)
+{
+	ModelAndView mv = new ModelAndView("cart");
+	/*model.addAttribute("cart", new Product());
+	model.addAttribute("cartList",this.productDAO.list());*/
+	
+	return mv;
+}
 	
 @RequestMapping(value="RegisterSuccess",method = RequestMethod.POST)
 public ModelAndView registerUser(@ModelAttribute Userdetails userdetails)

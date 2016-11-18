@@ -6,9 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Userdetails")
@@ -28,6 +32,43 @@ public class Userdetails implements Serializable {
 	private Boolean enabled;
 	private String address;
 	
+	@OneToOne
+    @JoinColumn(name="billingAddressId")
+    private BillingAdd billingAddress;
+
+    @OneToOne
+    @JoinColumn(name="shippingAddressId")
+    private ShippingAdd shippingAddress;
+
+    @OneToOne
+    @JoinColumn(name = "cartId")
+    @JsonIgnore
+    private Cart cart;
+	
+	public BillingAdd getBillingAddress() {
+		return billingAddress;
+	}
+
+	public void setBillingAddress(BillingAdd billingAddress) {
+		this.billingAddress = billingAddress;
+	}
+
+	public ShippingAdd getShippingAddress() {
+		return shippingAddress;
+	}
+
+	public void setShippingAddress(ShippingAdd shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 	public int getUserid() {
 		return userid;
 	}

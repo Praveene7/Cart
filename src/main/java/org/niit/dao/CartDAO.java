@@ -1,18 +1,15 @@
 package org.niit.dao;
 
-import java.util.List;
-
 import org.niit.model.Cart;
 
-import org.springframework.stereotype.Repository;
+import java.io.IOException;
 
-@Repository
-public interface CartDAO {
-	
-	public List<Cart> list();	
 
-	public void saveOrUpdate(Cart cart);
+public interface CartDao {
 
-	public void delete(int cartid);
+    Cart getCartById (int cartId);
 
+    Cart validate(int cartId) throws IOException;
+
+    void update(Cart cart);
 }

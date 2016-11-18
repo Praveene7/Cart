@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.niit.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,11 +61,45 @@ public class ProductDAOImpl implements ProductDAO {
 		
 		return null;
 	}
+	
+	@Transactional
+	public List<Product> listProductByStock() {
+		String hql = "from Product where isOutOffStock=" + "'" + false + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Product> listOfProductsByStock = (List<Product>) query.list();
+		return listOfProductsByStock;
+	}
 
 	public MultipartFile getImage() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Transactional
+	 public Product getProductById (String id) {
+	        Session session = sessionFactory.getCurrentSession();
+	        Product product = (Product) session.get(Product.class, id);
+	        session.flush();
+
+	        return product;
+	    }
+	/*@Transactional
+	public Product getProductById (String id) {
+		String hql = "from Product where id='" + id+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);		
+		List<Product> listOfProduct = query.list();			
+		if (listOfProduct != null && !listOfProduct.isEmpty()){
+
+			return  listOfProduct.get(0);
+
+		}
+				
+			
+			return null;
+
+
+		}*/
+
 
 
 }

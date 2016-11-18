@@ -83,7 +83,7 @@ function validateForm() {
 							<p style="color: red">${msg}</p>							
 								<div class="col-md-8">
 								<div class="form-group">
-									<input type="text" name="fullname" id="fullname" class="form-control input-sm" required="true" pattern="[A-Z][a-z]" title="Name should be alphabets"
+									<input type="text" name="fullname" id="fullname" class="form-control input-sm" required="true" pattern="[a-zA-Z ]+" title="Name should be alphabets"
 										placeholder="Full Name">
 								</div>
 							</div>

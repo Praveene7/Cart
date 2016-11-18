@@ -9,61 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Categories</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-.jumbotron {
-      margin-bottom: 0;
-      background-color: #EB0B12;
-    }
-    h1 { text-size: 15px
-color:#222;
-text-shadow: 0px 2px 3px #555555;
-}
-body {
-background-color: #E0064B;
-}
-</style>
 </head>
 <body>
-
- <div class="jumbotron">
-  <div class="container text-center">
-    <h1>Big</h1>
-    <p></p>
-  </div>
-</div>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-   <ul class="nav navbar-nav navbar-right">
-      <li><a href="viewCustomers">View Customers</a></li>
-       <li><a href="#">View Products</a></li>
-      <li><a href="logout"><span class="glyphicon glyphicon-log-0ut"></span> Log Out</a></li>
-    </ul>
-  </div>
-</nav>
-   <div class="row">
-    <nav class="col-sm-3">
-      <ul class="nav nav-pills nav-stacked" data-offset-top="205">
-        <li class="active">
-        <a href="admin/manageProducts">PRODUCT</a></li>
-        <li><a href="admin/manageSuppliers">SUPPLIER</a></li>
-        <li><a href="admin/manageCategories">CATEGORY</a></li>
-      </ul>
-    </nav>
-    <div class="col-sm-9">
-	<div class="container-fluid"
-		style="background-color: gray; color: purple; height: 80px;">
-		<center>
-			<h2>Category Details</h2>
-		</center>
-	</div>
 	<div class="container">
 	<h1>Add a Category </h1>		
 	<c:url var="addAction" value="/addcategory"></c:url>
@@ -75,11 +22,7 @@ background-color: #E0064B;
 						<spring:message  text="Category ID" />
 					</form:label>
 					<div class="col-sm-10">
-					<%
-						Random r = new Random();
-						int id = r.nextInt(999);
-					%>
-				<c:choose>
+					<c:choose>
 					<c:when test="${!empty category.id}">
 						<td><form:input path="id" disabled="true" readonly="true" />
 						</td>
@@ -89,7 +32,7 @@ background-color: #E0064B;
 						<td><form:input path="id" pattern =".{3,7}" required="true" title="id should contains 3 to 7 characters" class="form-control" /></td>
 					</c:otherwise>
 				</c:choose>
-			<form:input path="id" value="<%=id%>"  hidden="true" />
+			<form:input path="id" hidden="true" />
 			</div>
 			</div>
 			<br>
@@ -153,7 +96,6 @@ background-color: #E0064B;
 		</table>
 		</div>
 	</c:if>
-</div>
 </div>
 </body>
 </html>

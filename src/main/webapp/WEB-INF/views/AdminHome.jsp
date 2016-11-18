@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -57,11 +58,26 @@ background-color: #E0064B;
     <nav class="col-sm-3">
       <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
         <li class="active">
-        <a href="admin/manageProducts">PRODUCT</a></li>
-        <li><a href="admin/manageSuppliers">SUPPLIER</a></li>
-        <li><a href="admin/manageCategories">CATEGORY</a></li>
+        <a href="products">PRODUCT</a></li>
+        <li><a href="suppliers">SUPPLIER</a></li>
+        <li><a href="categories">CATEGORY</a></li>
       </ul>
     </nav>
+   <div id="categories">
+	<c:if test="${clickedCategories==true}">
+	<%@include file="AdminCategory.jsp" %>
+	</c:if>
+	</div>
+	<div id="suppliers">
+	<c:if test="${clickedSuppliers==true}">
+	<%@include file="AdminSupplier.jsp" %>
+	</c:if>
+	</div>
+	<div id="product">
+	<c:if test="${clickedProduct==true}">
+	<%@include file="AdminProduct.jsp" %>
+	</c:if>
+	</div>
     
    
 </div>

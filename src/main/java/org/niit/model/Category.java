@@ -1,5 +1,6 @@
 package org.niit.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,7 +16,9 @@ import org.springframework.stereotype.Component;
 @Table(name = "CATEGORY")
 @Component
 
-public class Category{
+public class Category implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	private String id;
 	private String name;

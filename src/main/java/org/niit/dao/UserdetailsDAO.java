@@ -14,13 +14,14 @@ public interface UserdetailsDAO {
 	public boolean update(Userdetails userdetails);
 		
 		public boolean delete(Userdetails userdetails);
-		
-		
+				
 		public List<Userdetails> list();
 				
 		public boolean isValidUser(String username, String password);
 
 		public Userdetails get(String userid);
+		
+	    Userdetails getUserByUsername (String username);
 
 	
 			

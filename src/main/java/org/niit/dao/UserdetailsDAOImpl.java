@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.niit.dao.UserdetailsDAOImpl;
+import org.niit.model.Cart;
 import org.niit.model.Supplier;
 import org.niit.model.Userdetails;
 
@@ -45,11 +47,20 @@ private static final Logger log = LoggerFactory.getLogger(UserdetailsDAOImpl.cla
 	public boolean save(Userdetails userdetails)
 	{
 	try {
+		Session session = sessionFactory.getCurrentSession();
 		log.debug("starting of save method");
 		userdetails.setRole("ROLE_USER");
 		userdetails.setEnabled(true);
 		sessionFactory.getCurrentSession().save(userdetails);
-	
+
+		  Cart newCart = new Cart();
+	        newCart.setUserdetails(userdetails);
+	        userdetails.setCart(newCart);
+	        session.saveOrUpdate(userdetails);
+	        session.saveOrUpdate(newCart);
+
+	        session.flush();
+
 		log.debug("Ending of save method");
 		return true;
 	}
@@ -124,6 +135,26 @@ public boolean isValidUser(String username, String password) {
 	return false;
 }
 
+/*@Transactional
+public Userdetails getUserByUsername (String username) {
+    Session session = sessionFactory.getCurrentSession();
+    Query query = session.createQuery("from Userdetails where username =" + "+" + username + "'");
+    query.setString(0, username);
 
+    return (Userdetails) query.uniqueResult();
+}*/
+@Transactional
+public Userdetails getUserByUsername(String username) {
+	String hql = "from Userdetails where username=" + "'" + username + "'";
+	Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	List<Userdetails> listOfCustomers = query.list();
+	if (listOfCustomers != null && !listOfCustomers.isEmpty()){
+		return  listOfCustomers.get(0);
+	}
+		
+	
+	return null;
+
+}
 
 }

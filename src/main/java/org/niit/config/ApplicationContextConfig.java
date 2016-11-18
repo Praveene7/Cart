@@ -5,13 +5,18 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
-
-
-
+import org.niit.model.BillingAdd;
+import org.niit.model.CardDetail;
+import org.niit.model.Cart;
+import org.niit.model.CartItem;
 import org.niit.model.Category;
-import org.niit.model.Product;
 
+
+
+import org.niit.model.Product;
+import org.niit.model.ShippingAdd;
 import org.niit.model.Supplier;
+import org.niit.model.UserOrder;
 import org.niit.model.Userdetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +30,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @Configuration
-@ComponentScan("org.niit.BabysCart")
+@ComponentScan("org.niit")
 @EnableTransactionManagement
 public class ApplicationContextConfig {
 	@Bean(name = "dataSource")
@@ -57,14 +62,12 @@ public class ApplicationContextConfig {
 	    sessionBuilder.addAnnotatedClasses(Category.class);
 	 sessionBuilder.addAnnotatedClasses(Userdetails.class);
 	 sessionBuilder.addAnnotatedClasses(Product.class);
-	 /*sessionBuilder.addAnnotatedClasses(Cart.class);
-	 sessionBuilder.addAnnotatedClasses(BillingAddress.class);
+	 sessionBuilder.addAnnotatedClasses(Cart.class);
+	 sessionBuilder.addAnnotatedClasses(BillingAdd.class);
 	 sessionBuilder.addAnnotatedClasses(CardDetail.class);
 	 sessionBuilder.addAnnotatedClasses(CartItem.class);
-	 sessionBuilder.addAnnotatedClasses(CheckoutDetails.class);
-	 sessionBuilder.addAnnotatedClasses(OrderDetail.class);
-	 sessionBuilder.addAnnotatedClasses(OrderedItems.class);
-	 sessionBuilder.addAnnotatedClasses(ShippingAddress.class);*/
+	 sessionBuilder.addAnnotatedClasses(UserOrder.class);
+	 sessionBuilder.addAnnotatedClasses(ShippingAdd.class);
 	    return sessionBuilder.buildSessionFactory();
 	}
 	@Autowired

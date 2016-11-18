@@ -27,10 +27,10 @@ public class SupplierController {
 	
 	@RequestMapping(value="/suppliers" , method=RequestMethod.GET)
 	public String getListSuppliers(Model model){
-		
 		model.addAttribute("supplier", supplier);
 		model.addAttribute("supplierList", this.supplierDAO.list());
-		return "AdminSupplier";		
+		model.addAttribute("clickedSuppliers","true");
+		return "AdminHome";		
 	}
 	
 	@RequestMapping(value="/addsupplier" , method=RequestMethod.POST)
@@ -40,7 +40,7 @@ public class SupplierController {
 		supplier.setId(newID);
 		supplierDAO.saveOrUpdate(supplier);
 		model.addAttribute("supplierList", this.supplierDAO.list());
-		return "AdminSupplier";
+		return "redirect:/suppliers";
 	}
 	
 	@RequestMapping("removesupplier/{id}") 
@@ -71,7 +71,7 @@ public class SupplierController {
 		model.addAttribute("supplier",this.supplierDAO.get(id));
 		model.addAttribute("supplierList", this.supplierDAO.list());
 		
-		return "AdminSupplier";
+		return "supplier";
 		
 	}
 	

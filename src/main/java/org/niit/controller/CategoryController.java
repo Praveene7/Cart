@@ -23,10 +23,10 @@ public class CategoryController {
 	
 	@RequestMapping(value="/categories" , method=RequestMethod.GET)
 	public String getListCategories(Model model){
-		
 		model.addAttribute("category", category);
 		model.addAttribute("categoryList", this.categoryDAO.list());
-		return "admin/AdminCategory";		
+		model.addAttribute("clickedCategories","true");
+		return "AdminHome";		
 	}
 	
 	@RequestMapping(value="/addcategory" , method=RequestMethod.POST)
@@ -36,7 +36,7 @@ public class CategoryController {
 	category.setId(newID);
 		categoryDAO.saveOrUpdate(category);
 		model.addAttribute("categoryList", this.categoryDAO.list());
-		return "admin/AdminCategory";
+		return "redirect:/categories";
 	}
 	
 	@RequestMapping("removecategory/{id}") 
@@ -67,7 +67,7 @@ public class CategoryController {
 		model.addAttribute("category",this.categoryDAO.get(id));
 		model.addAttribute("categoryList", this.categoryDAO.list());
 		
-		return "admin/AdminCategory";
+		return "AdminCategory";
 		
 	}
 }

@@ -1,5 +1,7 @@
 package org.niit.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,7 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table(name = "product")
 @Component
-public class Product {
+public class Product implements Serializable {
+	private static final long serialVersionUID = 17L;
 
 	public Supplier getSupplier() {
 		return supplier;
@@ -30,7 +33,22 @@ public class Product {
 	private String  id;
 	private String name;    
 	private String description;
-	private long price;
+	private double price;
+	private int quantity;
+	private boolean isOutOffStock;
+
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public boolean isOutOffStock() {
+		return isOutOffStock;
+	}
+	public void setOutOffStock(boolean isOutOffStock) {
+		this.isOutOffStock = isOutOffStock;
+	}
 
 	@Transient
 	private MultipartFile image;
@@ -94,10 +112,10 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public long getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(long price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	

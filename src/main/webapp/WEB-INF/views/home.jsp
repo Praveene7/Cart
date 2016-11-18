@@ -104,7 +104,7 @@ $(document).ready(function(){
 
 <div class="jumbotron">
   <div class="container text-center">
-    <h1>Big</h1>
+    <h1>Shopping Cart</h1>
     </div>
     <p style="color:red" align="right">${message}${username}</p>
 </div>
